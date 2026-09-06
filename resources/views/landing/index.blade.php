@@ -1,249 +1,229 @@
 @extends('layouts.landing')
 
-@section('title', ($setting->webname ?? 'Movers') . ' - Pakistan\'s #1 Digital Freight, Truck Booking & Logistics Platform')
+@section('title', ($setting->webname ?? 'Movers') . ' - Digital Freight & Truck Booking Platform in Pakistan')
 
 @section('styles')
 <style>
-    /* Hero Section Styling */
+    /* Hero Section */
     .hero-section {
-        background: linear-gradient(135deg, #0B1120 0%, #1E1B4B 60%, #0F172A 100%);
-        padding: 100px 0 130px 0;
+        background: linear-gradient(145deg, #0F172A 0%, #1E293B 100%);
+        padding: 80px 0 100px 0;
         position: relative;
-        overflow: hidden;
         color: #ffffff;
     }
 
-    .hero-glow-1 {
-        position: absolute;
-        width: 500px;
-        height: 500px;
-        background: radial-gradient(circle, rgba(79, 70, 229, 0.3) 0%, transparent 70%);
-        top: -100px;
-        left: -100px;
-        border-radius: 50%;
-        filter: blur(40px);
-        pointer-events: none;
-    }
-
-    .hero-glow-2 {
-        position: absolute;
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(6, 182, 212, 0.22) 0%, transparent 70%);
-        bottom: -150px;
-        right: -100px;
-        border-radius: 50%;
-        filter: blur(50px);
-        pointer-events: none;
-    }
-
     .hero-badge {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
-        padding: 6px 16px;
-        border-radius: 50px;
-        color: #93C5FD;
-        font-weight: 600;
-        font-size: 0.85rem;
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        margin-bottom: 24px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 6px 16px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #94A3B8;
+        margin-bottom: 20px;
     }
 
     .hero-title {
-        font-size: 3.5rem;
+        font-size: 3.25rem;
         line-height: 1.15;
         font-weight: 800;
         letter-spacing: -0.5px;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
+        color: #F8FAFC;
     }
 
     @media (max-width: 991px) {
-        .hero-title { font-size: 2.5rem; }
+        .hero-title { font-size: 2.25rem; }
     }
 
     .hero-subtitle {
-        font-size: 1.15rem;
-        line-height: 1.6;
+        font-size: 1.1rem;
+        line-height: 1.65;
+        color: #94A3B8;
+        margin-bottom: 30px;
+    }
+
+    .hero-trust-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         color: #CBD5E1;
-        margin-bottom: 35px;
-    }
-
-    /* Hero Estimator Card */
-    .hero-calculator-card {
-        background: rgba(30, 41, 59, 0.85);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 24px;
-        padding: 32px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Counter Bar */
-    .metrics-bar {
-        background: #ffffff;
-        margin-top: -60px;
-        border-radius: 20px;
-        box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.1);
-        border: 1px solid #E2E8F0;
-        padding: 35px 20px;
-        position: relative;
-        z-index: 10;
-    }
-
-    .metric-item {
-        text-align: center;
-        padding: 10px 15px;
-    }
-
-    .metric-number {
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: #0F172A;
-        font-family: 'Outfit', sans-serif;
-        line-height: 1;
-        margin-bottom: 6px;
-    }
-
-    .metric-label {
         font-size: 0.9rem;
-        font-weight: 600;
-        color: #64748B;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
     }
 
-    /* Feature Tabs */
-    .journey-tabs .nav-link {
-        border-radius: 12px;
-        padding: 14px 28px;
-        font-weight: 700;
-        font-size: 1.05rem;
-        color: #475569 !important;
-        background: #F1F5F9;
-        border: 1px solid transparent;
-        transition: all 0.3s;
+    .hero-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
-    .journey-tabs .nav-link.active {
-        background: var(--primary);
-        color: #ffffff !important;
-        box-shadow: 0 8px 20px -3px rgba(79, 70, 229, 0.4);
+    /* Calculator Card */
+    .hero-calculator-card {
+        background: rgba(15, 23, 42, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
     }
 
-    .step-card {
+    /* Feature Grid Cards */
+    .feature-card {
         background: #ffffff;
         border: 1px solid #E2E8F0;
         border-radius: 16px;
-        padding: 28px;
+        padding: 30px 24px;
         height: 100%;
-        position: relative;
-        transition: all 0.3s;
+        transition: all 0.25s ease-in-out;
+        display: flex;
+        flex-direction: column;
     }
 
-    .step-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 15px 30px -5px rgba(15, 23, 42, 0.1);
+    .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08);
         border-color: #CBD5E1;
     }
 
-    .step-number {
-        width: 44px;
-        height: 44px;
-        background: var(--primary-light);
-        color: var(--primary);
-        font-weight: 800;
-        font-size: 1.2rem;
+    .feature-icon-box {
+        width: 52px;
+        height: 52px;
         border-radius: 12px;
+        background: #F1F5F9;
+        color: #0F172A;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 1.4rem;
         margin-bottom: 20px;
     }
 
-    /* Vehicle Fleet Cards */
-    .fleet-card {
+    .feature-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #0F172A;
+        margin-bottom: 10px;
+    }
+
+    .feature-desc {
+        color: #64748B;
+        font-size: 0.92rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+
+    /* Workflow Steps */
+    .workflow-tabs .nav-link {
+        border-radius: 10px;
+        padding: 12px 24px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #475569;
+        background: #F1F5F9;
+        border: 1px solid transparent;
+        transition: all 0.2s;
+    }
+
+    .workflow-tabs .nav-link.active {
+        background: var(--primary);
+        color: #ffffff;
+    }
+
+    .step-box {
         background: #ffffff;
         border: 1px solid #E2E8F0;
-        border-radius: 18px;
-        overflow: hidden;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 14px;
+        padding: 24px;
         height: 100%;
+        position: relative;
     }
 
-    .fleet-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 35px -8px rgba(15, 23, 42, 0.12);
-        border-color: var(--primary);
-    }
-
-    .fleet-img-wrapper {
-        background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%);
-        padding: 25px;
-        text-align: center;
-        height: 160px;
+    .step-index {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #0F172A;
+        color: #ffffff;
+        font-weight: 700;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+    }
+
+    /* Fleet Cards */
+    .fleet-card {
+        background: #ffffff;
+        border: 1px solid #E2E8F0;
+        border-radius: 16px;
+        overflow: hidden;
+        height: 100%;
+        transition: all 0.25s ease;
+    }
+
+    .fleet-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .fleet-img-wrap {
+        height: 160px;
+        background: #F8FAFC;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid #F1F5F9;
+        padding: 16px;
     }
 
     .fleet-img {
-        max-height: 120px;
+        max-height: 100%;
         max-width: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
     }
 
-    /* Testimonial Cards */
-    .testimonial-card {
-        background: #ffffff;
-        border: 1px solid #E2E8F0;
-        border-radius: 18px;
-        padding: 30px;
-        height: 100%;
-        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
+    /* App Banner */
+    .app-banner {
+        background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+        border-radius: 24px;
+        padding: 48px 40px;
+        color: #ffffff;
     }
 
-    /* FAQ Section Accordion */
+    /* Custom Accordion */
     .custom-accordion .accordion-item {
         border: 1px solid #E2E8F0;
-        border-radius: 14px !important;
-        margin-bottom: 14px;
+        border-radius: 12px !important;
+        margin-bottom: 12px;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
     }
 
     .custom-accordion .accordion-button {
-        font-weight: 700;
-        font-size: 1.05rem;
+        font-weight: 600;
+        font-size: 1rem;
         color: #0F172A;
         background: #ffffff;
-        padding: 20px 24px;
+        padding: 18px 22px;
     }
 
     .custom-accordion .accordion-button:not(.collapsed) {
-        background-color: var(--primary-light);
+        background-color: #F8FAFC;
         color: var(--primary);
         box-shadow: none;
     }
 
     .custom-accordion .accordion-body {
-        padding: 20px 24px;
-        color: #475569;
-        line-height: 1.7;
-    }
-
-    /* App Download CTA Banner */
-    .download-cta-banner {
-        background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%);
-        border-radius: 28px;
-        padding: 60px 50px;
-        position: relative;
-        overflow: hidden;
-        color: #ffffff;
+        padding: 18px 22px;
+        color: #64748B;
+        line-height: 1.65;
+        font-size: 0.95rem;
     }
 </style>
 @endsection
@@ -252,48 +232,45 @@
 
 <!-- 1. HERO SECTION -->
 <section class="hero-section">
-    <div class="hero-glow-1"></div>
-    <div class="hero-glow-2"></div>
-
-    <div class="container position-relative">
+    <div class="container">
         <div class="row align-items-center g-5">
             <!-- Left Hero Content -->
             <div class="col-lg-6">
                 <div class="hero-badge">
-                    <i class="bi bi-patch-check-fill text-warning"></i>
-                    <span>Pakistan's #1 Digital Lorry & Freight Network</span>
+                    <i class="bi bi-truck text-light"></i>
+                    <span>Digital Freight Logistics Platform</span>
                 </div>
 
                 <h1 class="hero-title">
-                    Smarter Freight Transport with <span class="gradient-text-light">Zero Brokerage</span>
+                    Transparent Freight & Direct Truck Booking
                 </h1>
 
                 <p class="hero-subtitle">
-                    Connect directly with <strong>10,000+ verified truck owners</strong> across Karachi, Lahore, Islamabad, Multan, and Peshawar. Get inDrive-style fair bidding, instant electronic Bilty, and real-time live GPS tracking.
+                    Post your cargo loads, receive direct bids from verified truck drivers across Pakistan, and generate official electronic Bilty in minutes — with zero middleman commissions.
                 </p>
 
                 <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
-                    <a href="{{ route('landing.download') }}" class="btn-brand-primary">
-                        <i class="bi bi-download"></i> Download Movers App
+                    <a href="{{ route('landing.download') }}" class="btn btn-primary py-3 px-4 fw-semibold rounded-3 d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-phone"></i> Download Mobile App
                     </a>
-                    <a href="{{ route('landing.calculator') }}" class="btn-brand-outline-light">
-                        <i class="bi bi-calculator"></i> Calculate Trip Fare
+                    <a href="{{ route('landing.calculator') }}" class="btn btn-outline-light py-3 px-4 fw-semibold rounded-3 d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-calculator"></i> Fare Calculator
                     </a>
                 </div>
 
-                <!-- Trust Points -->
-                <div class="d-flex flex-wrap gap-4 pt-3 border-top border-secondary border-opacity-25 text-white-50 small">
-                    <div class="d-flex align-items-center gap-2">
-                        <i class="bi bi-shield-lock-fill text-success fs-5"></i>
-                        <span>100% KYC Verified Drivers</span>
+                <!-- Grounded Trust Points -->
+                <div class="hero-trust-list">
+                    <div class="hero-trust-item">
+                        <i class="bi bi-check2-circle text-primary fs-5"></i>
+                        <span>KYC Verified Drivers</span>
                     </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <i class="bi bi-qr-code-scan text-info fs-5"></i>
-                        <span>Digital Bilty & Adda Register</span>
+                    <div class="hero-trust-item">
+                        <i class="bi bi-check2-circle text-primary fs-5"></i>
+                        <span>Digital E-Bilty with QR</span>
                     </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <i class="bi bi-geo-alt-fill text-warning fs-5"></i>
-                        <span>Live GPS Telematics</span>
+                    <div class="hero-trust-item">
+                        <i class="bi bi-check2-circle text-primary fs-5"></i>
+                        <span>Direct Rate Bidding</span>
                     </div>
                 </div>
             </div>
@@ -303,10 +280,10 @@
                 <div class="hero-calculator-card">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div>
-                            <h3 class="fs-4 text-white mb-1 brand-font"><i class="bi bi-lightning-charge-fill text-warning me-2"></i>Instant Fare Estimator</h3>
-                            <p class="text-white-50 small mb-0">Check live distance, fuel consumption & fair truck rate</p>
+                            <h3 class="fs-5 text-white mb-1 fw-bold"><i class="bi bi-calculator me-2"></i>Trip Fare Estimator</h3>
+                            <p class="text-white-50 small mb-0">Estimate route distance, fuel consumption & freight rate</p>
                         </div>
-                        <span class="badge bg-primary bg-opacity-25 text-info border border-info border-opacity-25 px-2 py-1 rounded-pill small">
+                        <span class="badge bg-secondary bg-opacity-50 text-white px-2 py-1 rounded small">
                             Diesel: Rs. {{ number_format($setting->diesel_price ?? 275, 0) }}/L
                         </span>
                     </div>
@@ -315,7 +292,7 @@
                         @csrf
                         <div class="row g-3">
                             <div class="col-sm-6">
-                                <label class="form-label text-white-50 small fw-semibold">Pickup Hub (From)</label>
+                                <label class="form-label text-white-50 small fw-semibold">Pickup City (From)</label>
                                 <select class="form-select bg-dark text-white border-secondary border-opacity-50 py-2" id="heroFromCity" name="from_city" required>
                                     @foreach($cities as $c)
                                         <option value="{{ $c }}" {{ $c == 'Karachi' ? 'selected' : '' }}>{{ $c }}</option>
@@ -324,7 +301,7 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <label class="form-label text-white-50 small fw-semibold">Delivery Hub (To)</label>
+                                <label class="form-label text-white-50 small fw-semibold">Delivery City (To)</label>
                                 <select class="form-select bg-dark text-white border-secondary border-opacity-50 py-2" id="heroToCity" name="to_city" required>
                                     @foreach($cities as $c)
                                         <option value="{{ $c }}" {{ $c == 'Lahore' ? 'selected' : '' }}>{{ $c }}</option>
@@ -333,7 +310,7 @@
                             </div>
 
                             <div class="col-sm-8">
-                                <label class="form-label text-white-50 small fw-semibold">Select Truck Type</label>
+                                <label class="form-label text-white-50 small fw-semibold">Truck Type</label>
                                 <select class="form-select bg-dark text-white border-secondary border-opacity-50 py-2" id="heroVehicleId" name="vehicle_id" required>
                                     @foreach($vehicles as $v)
                                         <option value="{{ $v->id }}" {{ $loop->first ? 'selected' : '' }}>
@@ -344,28 +321,28 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <label class="form-label text-white-50 small fw-semibold">Payload (Tons)</label>
+                                <label class="form-label text-white-50 small fw-semibold">Weight (Tons)</label>
                                 <input type="number" class="form-control bg-dark text-white border-secondary border-opacity-50 py-2" id="heroWeight" name="weight" value="5" min="1" max="100">
                             </div>
 
                             <div class="col-12">
-                                <button type="button" id="btnCalculateHero" class="btn btn-brand-primary w-100 justify-content-center py-3 fs-6">
-                                    <i class="bi bi-calculator-fill"></i> Calculate Fair Estimate
+                                <button type="button" id="btnCalculateHero" class="btn btn-primary w-100 justify-content-center py-3 fw-semibold">
+                                    <i class="bi bi-arrow-right-circle me-1"></i> Calculate Fare Estimate
                                 </button>
                             </div>
                         </div>
                     </form>
 
                     <!-- Results Box (AJAX Updated) -->
-                    <div id="heroCalcResult" class="mt-4 p-3 rounded-3 bg-dark bg-opacity-75 border border-secondary border-opacity-25" style="display: none;">
+                    <div id="heroCalcResult" class="mt-3 p-3 rounded-3 bg-dark bg-opacity-75 border border-secondary border-opacity-25" style="display: none;">
                         <div class="row text-center g-2">
                             <div class="col-4 border-end border-secondary border-opacity-25">
                                 <span class="d-block text-white-50 small">Distance</span>
-                                <strong class="text-info fs-6" id="resDistance">0 KM</strong>
+                                <strong class="text-white fs-6" id="resDistance">0 KM</strong>
                             </div>
                             <div class="col-4 border-end border-secondary border-opacity-25">
                                 <span class="d-block text-white-50 small">Est. Time</span>
-                                <strong class="text-warning fs-6" id="resTime">0 Hrs</strong>
+                                <strong class="text-white fs-6" id="resTime">0 Hrs</strong>
                             </div>
                             <div class="col-4">
                                 <span class="d-block text-white-50 small">Est. Freight Fare</span>
@@ -379,125 +356,173 @@
     </div>
 </section>
 
-<!-- 2. METRICS COUNTER BAR -->
-<div class="container">
-    <div class="metrics-bar">
-        <div class="row g-4 align-items-center">
-            <div class="col-md-3 col-6 border-end-md">
-                <div class="metric-item">
-                    <div class="metric-number text-primary">{{ number_format($counts['lorries']) }}+</div>
-                    <div class="metric-label">Verified Lorries</div>
+<!-- 2. ACTUAL APP FEATURES -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="text-uppercase text-muted fw-bold small" style="letter-spacing: 1px;">Core Mobile Features</span>
+            <h2 class="fs-2 fw-bold text-dark mt-1">Everything You Need in One App</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">
+                Designed specifically for Pakistan's road transport ecosystem, connecting cargo shippers with truck drivers and fleet owners.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Feature 1: Post Load -->
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+                    <h3 class="feature-title">Post Loads & Get Bids</h3>
+                    <p class="feature-desc">
+                        Post your cargo requirements with origin, destination, material type, and target rate. Verified drivers submit competitive offers directly.
+                    </p>
                 </div>
             </div>
-            <div class="col-md-3 col-6 border-end-md">
-                <div class="metric-item">
-                    <div class="metric-number text-success">{{ number_format($counts['shippers']) }}+</div>
-                    <div class="metric-label">Active Shippers</div>
+
+            <!-- Feature 2: Find Lorries -->
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <i class="bi bi-truck"></i>
+                    </div>
+                    <h3 class="feature-title">Find Available Lorries</h3>
+                    <p class="feature-desc">
+                        Browse active trucks and fleet owners by city or route. View vehicle capacity and connect with transporters ready for dispatch.
+                    </p>
                 </div>
             </div>
-            <div class="col-md-3 col-6 border-end-md">
-                <div class="metric-item">
-                    <div class="metric-number text-indigo">{{ number_format($counts['loads']) }}+</div>
-                    <div class="metric-label">Loads Delivered</div>
+
+            <!-- Feature 3: Digital Bilty -->
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <i class="bi bi-qr-code"></i>
+                    </div>
+                    <h3 class="feature-title">Digital E-Bilty with QR</h3>
+                    <p class="feature-desc">
+                        Generate official consignment notes electronically. Includes consignor, consignee, cargo details, and QR verification for highway checkpoints.
+                    </p>
                 </div>
             </div>
-            <div class="col-md-3 col-6">
-                <div class="metric-item">
-                    <div class="metric-number text-warning">{{ $counts['cities'] }}+</div>
-                    <div class="metric-label">Logistics Hubs</div>
+
+            <!-- Feature 4: Fare Calculator -->
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <i class="bi bi-calculator"></i>
+                    </div>
+                    <h3 class="feature-title">Freight Fare Calculator</h3>
+                    <p class="feature-desc">
+                        Check accurate distance and estimated freight costs between any two Pakistani cities based on truck type, weight, and current diesel rates.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 5: KYC Verification -->
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h3 class="feature-title">Verified Drivers & Vehicles</h3>
+                    <p class="feature-desc">
+                        Transporters and drivers submit CNIC, driving license, and vehicle registration documents for admin review before booking loads.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 6: Transporter Community -->
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <i class="bi bi-chat-left-text"></i>
+                    </div>
+                    <h3 class="feature-title">Transporter Community</h3>
+                    <p class="feature-desc">
+                        Stay informed with regional road advisories, weather updates, toll tax information, and group discussions directly inside the app.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- 3. HOW IT WORKS (DUAL JOURNEY TABS) -->
+<!-- 3. HOW IT WORKS -->
 <section class="section-padding">
     <div class="container">
-        <div class="section-header text-center">
-            <span class="section-subtitle">Streamlined Logistics</span>
-            <h2 class="section-title">How Movers Works For You</h2>
-            <p class="section-desc">Whether you are shipping bulk cargo across provinces or managing a fleet of trucks, Movers makes every shipment effortless and transparent.</p>
+        <div class="section-header text-center mb-5">
+            <span class="text-uppercase text-muted fw-bold small" style="letter-spacing: 1px;">Simple Process</span>
+            <h2 class="fs-2 fw-bold text-dark mt-1">How the Platform Works</h2>
+            <p class="text-muted mx-auto" style="max-width: 550px;">
+                Straightforward workflows whether you are booking a single truck or operating an entire fleet.
+            </p>
         </div>
 
-        <!-- Journey Tabs -->
-        <ul class="nav nav-pills journey-tabs justify-content-center gap-3 mb-5" id="pills-tab" role="tablist">
+        <ul class="nav nav-pills workflow-tabs justify-content-center gap-2 mb-5" id="workflowTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pills-shipper-tab" data-bs-toggle="pill" data-bs-target="#pills-shipper" type="button" role="tab" aria-controls="pills-shipper" aria-selected="true">
-                    <i class="bi bi-box-seam me-2"></i> For Shippers & Cargo Owners
+                <button class="nav-link active" id="shipper-tab" data-bs-toggle="pill" data-bs-target="#shipper-flow" type="button" role="tab">
+                    For Cargo Shippers
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-transporter-tab" data-bs-toggle="pill" data-bs-target="#pills-transporter" type="button" role="tab" aria-controls="pills-transporter" aria-selected="false">
-                    <i class="bi bi-truck me-2"></i> For Transporters & Fleet Owners
+                <button class="nav-link" id="transporter-tab" data-bs-toggle="pill" data-bs-target="#transporter-flow" type="button" role="tab">
+                    For Truck Owners & Drivers
                 </button>
             </li>
         </ul>
 
-        <div class="tab-content" id="pills-tabContent">
-            <!-- Shipper Journey -->
-            <div class="tab-pane fade show active" id="pills-shipper" role="tabpanel" aria-labelledby="pills-shipper-tab">
+        <div class="tab-content" id="workflowTabContent">
+            <!-- Shipper Workflow -->
+            <div class="tab-pane fade show active" id="shipper-flow" role="tabpanel">
                 <div class="row g-4">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="step-card">
-                            <div class="step-number">1</div>
-                            <h4 class="fs-5 mb-2">Post Your Load</h4>
-                            <p class="text-muted small mb-0">Enter pickup/drop locations, cargo weight, vehicle category, and your initial price offer in under 60 seconds.</p>
+                    <div class="col-md-4">
+                        <div class="step-box">
+                            <div class="step-index">1</div>
+                            <h4 class="fs-6 fw-bold text-dark mb-2">Post Your Cargo Load</h4>
+                            <p class="text-muted small mb-0">Enter pickup, delivery destination, vehicle requirements, cargo weight, and your offer rate in the app.</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="step-card">
-                            <div class="step-number">2</div>
-                            <h4 class="fs-5 mb-2">Compare Driver Bids</h4>
-                            <p class="text-muted small mb-0">Receive competitive direct offers from verified lorry owners. Review driver ratings, past trips, and vehicle condition.</p>
+                    <div class="col-md-4">
+                        <div class="step-box">
+                            <div class="step-index">2</div>
+                            <h4 class="fs-6 fw-bold text-dark mb-2">Compare Direct Bids</h4>
+                            <p class="text-muted small mb-0">Verified drivers and fleet owners receive alerts and submit price bids. Compare offers and choose the best rate.</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="step-card">
-                            <div class="step-number">3</div>
-                            <h4 class="fs-5 mb-2">Digital Bilty & Escrow</h4>
-                            <p class="text-muted small mb-0">Accept the best bid, generate an official E-Bilty with QR verification, and secure payment in the Movers Escrow Wallet.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="step-card">
-                            <div class="step-number">4</div>
-                            <h4 class="fs-5 mb-2">Live GPS & Delivery</h4>
-                            <p class="text-muted small mb-0">Track driver route in real time. Driver submits electronic Proof of Delivery (POD) before payment is released.</p>
+                    <div class="col-md-4">
+                        <div class="step-box">
+                            <div class="step-index">3</div>
+                            <h4 class="fs-6 fw-bold text-dark mb-2">Confirm & Issue E-Bilty</h4>
+                            <p class="text-muted small mb-0">Accept the bid, generate an electronic bilty with QR code, and coordinate dispatch directly with the driver.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Transporter Journey -->
-            <div class="tab-pane fade" id="pills-transporter" role="tabpanel" aria-labelledby="pills-transporter-tab">
+            <!-- Transporter Workflow -->
+            <div class="tab-pane fade" id="transporter-flow" role="tabpanel">
                 <div class="row g-4">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="step-card">
-                            <div class="step-number">1</div>
-                            <h4 class="fs-5 mb-2">Register & Verify Lorry</h4>
-                            <p class="text-muted small mb-0">Upload CNIC, driving license, and vehicle registration documents. Get approved quickly by our KYC team.</p>
+                    <div class="col-md-4">
+                        <div class="step-box">
+                            <div class="step-index">1</div>
+                            <h4 class="fs-6 fw-bold text-dark mb-2">Register & Verify Documents</h4>
+                            <p class="text-muted small mb-0">Sign up in the app, add your vehicle details, and upload CNIC and license for quick KYC approval.</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="step-card">
-                            <div class="step-number">2</div>
-                            <h4 class="fs-5 mb-2">Browse Live Loads</h4>
-                            <p class="text-muted small mb-0">Find high-paying freight loads in your city or along your return route with zero empty return miles.</p>
+                    <div class="col-md-4">
+                        <div class="step-box">
+                            <div class="step-index">2</div>
+                            <h4 class="fs-6 fw-bold text-dark mb-2">Browse Loads & Submit Bids</h4>
+                            <p class="text-muted small mb-0">Search active loads in your city or along your return route. Submit your desired freight rate.</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="step-card">
-                            <div class="step-number">3</div>
-                            <h4 class="fs-5 mb-2">Submit Your Price Bid</h4>
-                            <p class="text-muted small mb-0">Set your own rate with transparent inDrive-style bidding without middleman brokerage fees.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="step-card">
-                            <div class="step-number">4</div>
-                            <h4 class="fs-5 mb-2">Instant Bank Payout</h4>
-                            <p class="text-muted small mb-0">Complete the trip, submit digital delivery receipt, and withdraw earnings directly to your bank account or wallet.</p>
+                    <div class="col-md-4">
+                        <div class="step-box">
+                            <div class="step-index">3</div>
+                            <h4 class="fs-6 fw-bold text-dark mb-2">Complete Trip & Get Paid</h4>
+                            <p class="text-muted small mb-0">Load cargo, complete the trip under the digital bilty, and receive payment upon safe delivery.</p>
                         </div>
                     </div>
                 </div>
@@ -506,39 +531,41 @@
     </div>
 </section>
 
-<!-- 4. FLEET & VEHICLE SHOWCASE -->
+<!-- 4. FLEET DIRECTORY -->
 <section class="section-padding bg-light">
     <div class="container">
-        <div class="section-header text-center">
-            <span class="section-subtitle">Nationwide Fleet Directory</span>
-            <h2 class="section-title">Vehicles for Every Cargo Size</h2>
-            <p class="section-desc">From light urban pickups to heavy multi-axle trailers, our verified fleet is ready to dispatch anywhere in Pakistan.</p>
+        <div class="section-header text-center mb-5">
+            <span class="text-uppercase text-muted fw-bold small" style="letter-spacing: 1px;">Supported Fleet</span>
+            <h2 class="fs-2 fw-bold text-dark mt-1">Vehicles Supported on Movers</h2>
+            <p class="text-muted mx-auto" style="max-width: 550px;">
+                From light pickup vans to heavy multi-axle trailers, our network accommodates all cargo categories.
+            </p>
         </div>
 
         <div class="row g-4">
             @foreach($vehicles->take(8) as $veh)
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="fleet-card">
-                        <div class="fleet-img-wrapper">
+                        <div class="fleet-img-wrap">
                             @if(!empty($veh->img) && file_exists(public_path($veh->img)))
                                 <img src="{{ asset($veh->img) }}" alt="{{ $veh->title }}" class="fleet-img">
                             @else
-                                <div class="text-primary fs-1"><i class="fa-solid fa-truck"></i></div>
+                                <div class="text-secondary fs-1"><i class="bi bi-truck"></i></div>
                             @endif
                         </div>
-                        <div class="p-4">
+                        <div class="p-3">
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <h4 class="fs-6 fw-bold mb-0 text-dark">{{ $veh->title }}</h4>
-                                <span class="badge bg-primary bg-opacity-10 text-primary fw-bold">{{ $veh->min_weight }}-{{ $veh->max_weight }} Tons</span>
+                                <span class="badge bg-light text-dark border">{{ $veh->min_weight }}-{{ $veh->max_weight }} Tons</span>
                             </div>
-                            <div class="border-top border-light pt-3 mt-3 text-muted small">
+                            <div class="border-top pt-2 mt-2 text-muted small">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span>Base Fare:</span>
                                     <strong class="text-dark">Rs. {{ number_format($veh->base_fare ?? 1500) }}</strong>
                                 </div>
                                 <div class="d-flex justify-content-between mb-1">
-                                    <span>Rate per KM:</span>
-                                    <strong class="text-dark">Rs. {{ number_format($veh->per_km_rate ?? 75) }} / km</strong>
+                                    <span>Rate / KM:</span>
+                                    <strong class="text-dark">Rs. {{ number_format($veh->per_km_rate ?? 75) }}</strong>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span>Fuel Avg:</span>
@@ -551,200 +578,36 @@
             @endforeach
         </div>
 
-        <div class="text-center mt-5">
-            <a href="{{ route('landing.calculator') }}" class="btn btn-brand-primary">
-                <i class="bi bi-speedometer2"></i> Explore All Vehicles & Calculate Rates
+        <div class="text-center mt-4">
+            <a href="{{ route('landing.calculator') }}" class="btn btn-outline-dark fw-semibold px-4 py-2 rounded-3">
+                <i class="bi bi-calculator me-1"></i> Calculate Rate for Any Vehicle
             </a>
         </div>
     </div>
 </section>
 
-<!-- 5. KEY ADVANTAGES & DIGITAL BILTY -->
+<!-- 5. FAQ SECTION -->
 <section class="section-padding">
     <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-                <span class="section-subtitle">Why Choose Movers</span>
-                <h2 class="section-title mb-4">Eliminating Brokers. Delivering Transparency.</h2>
-                <p class="text-muted mb-4">
-                    Traditional goods transport in Pakistan suffers from hidden agent commissions, untracked routes, paper bilty forgery, and delayed payments. Movers solves all four with cutting-edge logistics technology.
-                </p>
-
-                <div class="row g-3">
-                    <div class="col-sm-6">
-                        <div class="p-3 border rounded-3 bg-white shadow-sm">
-                            <div class="d-flex align-items-center gap-3 mb-2">
-                                <div class="bg-primary bg-opacity-10 text-primary p-2 rounded-3 fs-4">
-                                    <i class="bi bi-tag-fill"></i>
-                                </div>
-                                <h5 class="fs-6 fw-bold mb-0">Zero Brokerage</h5>
-                            </div>
-                            <p class="text-muted small mb-0">Direct shipper-to-driver bargaining saves up to 20% on freight costs.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="p-3 border rounded-3 bg-white shadow-sm">
-                            <div class="d-flex align-items-center gap-3 mb-2">
-                                <div class="bg-success bg-opacity-10 text-success p-2 rounded-3 fs-4">
-                                    <i class="bi bi-file-earmark-check-fill"></i>
-                                </div>
-                                <h5 class="fs-6 fw-bold mb-0">Electronic Bilty</h5>
-                            </div>
-                            <p class="text-muted small mb-0">Instant QR-coded legal bilty for checkpoint clearances and invoicing.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="p-3 border rounded-3 bg-white shadow-sm">
-                            <div class="d-flex align-items-center gap-3 mb-2">
-                                <div class="bg-info bg-opacity-10 text-info p-2 rounded-3 fs-4">
-                                    <i class="bi bi-pin-map-fill"></i>
-                                </div>
-                                <h5 class="fs-6 fw-bold mb-0">Live GPS Tracking</h5>
-                            </div>
-                            <p class="text-muted small mb-0">Track shipment milestones and driver location from dispatch to delivery.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="p-3 border rounded-3 bg-white shadow-sm">
-                            <div class="d-flex align-items-center gap-3 mb-2">
-                                <div class="bg-warning bg-opacity-10 text-warning p-2 rounded-3 fs-4">
-                                    <i class="bi bi-wallet2"></i>
-                                </div>
-                                <h5 class="fs-6 fw-bold mb-0">Secure Escrow</h5>
-                            </div>
-                            <p class="text-muted small mb-0">Funds held safely in escrow and released only upon delivery confirmation.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="p-4 p-md-5 rounded-4 bg-dark text-white position-relative shadow-lg border border-secondary border-opacity-25">
-                    <div class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 px-3 py-1 rounded-pill mb-3">
-                        <i class="bi bi-patch-check-fill me-1"></i> Digital Innovation
-                    </div>
-                    <h3 class="brand-font text-white mb-3">Movers Adda & Community Hub</h3>
-                    <p class="text-white-50 mb-4">
-                        We connect traditional transport Addas (Badami Bagh Lahore, Mauripur Karachi, Pirwadhai Rawalpindi) directly to the cloud. Over 50+ regional community chat groups keep drivers updated on route closures, tolls, and cargo opportunities.
-                    </p>
-                    <div class="d-flex flex-column gap-3">
-                        <div class="d-flex align-items-center gap-3 p-3 rounded-3 bg-white bg-opacity-10 border border-white border-opacity-10">
-                            <i class="bi bi-chat-dots-fill fs-3 text-info"></i>
-                            <div>
-                                <strong class="d-block text-white">Live Adda Broadcasts</strong>
-                                <span class="text-white-50 small">Get notified of road blockages, fog advisories & return loads.</span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 p-3 rounded-3 bg-white bg-opacity-10 border border-white border-opacity-10">
-                            <i class="bi bi-shield-shaded fs-3 text-warning"></i>
-                            <div>
-                                <strong class="d-block text-white">24/7 Roadside Assistance & Helpline</strong>
-                                <span class="text-white-50 small">Dedicated emergency dispatch team across national highways.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 6. SHIPPER & DRIVER TESTIMONIALS -->
-<section class="section-padding bg-light">
-    <div class="container">
-        <div class="section-header text-center">
-            <span class="section-subtitle">Real Stories</span>
-            <h2 class="section-title">Trusted by Shippers & Drivers</h2>
-            <p class="section-desc">See how Movers has transformed the way Pakistan moves bulk cargo, textiles, produce, and consumer goods.</p>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="testimonial-card">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 48px; height: 48px;">
-                            TA
-                        </div>
-                        <div>
-                            <h5 class="fs-6 mb-0 fw-bold">Tariq Ansari</h5>
-                            <span class="text-muted small">Textile Mill Owner, Faisalabad</span>
-                        </div>
-                    </div>
-                    <div class="text-warning mb-3">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                    </div>
-                    <p class="text-muted small mb-0">
-                        "We dispatch 20+ containers weekly from Faisalabad to Karachi port. Movers eliminated the middle brokers and cut our freight costs by 18%. The digital bilty saves countless hours at port gates."
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="testimonial-card">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 48px; height: 48px;">
-                            MK
-                        </div>
-                        <div>
-                            <h5 class="fs-6 mb-0 fw-bold">Malik Kamran</h5>
-                            <span class="text-muted small">Fleet Owner (8 Trailers), Rawalpindi</span>
-                        </div>
-                    </div>
-                    <div class="text-warning mb-3">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                    </div>
-                    <p class="text-muted small mb-0">
-                        "Our trucks used to wait 2-3 days in Karachi for return loads. With the Movers app, my drivers get return freight offers before they even finish unloading. Zero idle downtime!"
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="testimonial-card">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="bg-indigo text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 48px; height: 48px; background-color: #6366F1;">
-                            SZ
-                        </div>
-                        <div>
-                            <h5 class="fs-6 mb-0 fw-bold">Shahzad Zia</h5>
-                            <span class="text-muted small">Agri Commodities Shipper, Multan</span>
-                        </div>
-                    </div>
-                    <div class="text-warning mb-3">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                    </div>
-                    <p class="text-muted small mb-0">
-                        "When shipping perishable fruits and vegetables, punctuality is everything. Live GPS tracking allows our warehouse team to plan loading and unloading down to the exact minute."
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 7. FAQ ACCORDION -->
-<section class="section-padding">
-    <div class="container">
-        <div class="section-header text-center">
-            <span class="section-subtitle">Got Questions?</span>
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-desc">Everything you need to know about load booking, transporter bidding, KYC verification, and digital bilty.</p>
+        <div class="section-header text-center mb-5">
+            <span class="text-uppercase text-muted fw-bold small" style="letter-spacing: 1px;">Common Queries</span>
+            <h2 class="fs-2 fw-bold text-dark mt-1">Frequently Asked Questions</h2>
+            <p class="text-muted mx-auto" style="max-width: 550px;">
+                Learn how load booking, bidding, and verification work on the Movers platform.
+            </p>
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-lg-9">
+            <div class="col-lg-8">
                 <div class="accordion custom-accordion" id="landingFaqAccordion">
                     @forelse($faqs as $index => $faq)
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="heading{{ $faq->id }}">
-                                <button class="accordion-button {{ $index !== 0 ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $faq->id }}" aria-expanded="{{ $index === 0 ? 'true' : 'false' }}" aria-controls="collapse{{ $faq->id }}">
+                                <button class="accordion-button {{ $index !== 0 ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $faq->id }}" aria-expanded="{{ $index === 0 ? 'true' : 'false' }}">
                                     {{ $faq->question }}
                                 </button>
                             </h2>
-                            <div id="collapse{{ $faq->id }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}" aria-labelledby="heading{{ $faq->id }}" data-bs-parent="#landingFaqAccordion">
+                            <div id="collapse{{ $faq->id }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}" data-bs-parent="#landingFaqAccordion">
                                 <div class="accordion-body">
                                     {{ $faq->answer }}
                                 </div>
@@ -754,12 +617,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                                    How does the inDrive-style driver bidding work?
+                                    How does direct driver bidding work?
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#landingFaqAccordion">
                                 <div class="accordion-body">
-                                    When you post a load, verified truck drivers and fleet owners receive an instant alert. They submit competitive bids. You can accept the best offer based on price, driver rating, and vehicle specifications.
+                                    When a shipper posts a load, available truck drivers receive a notification and can submit their price offer. The shipper reviews bids and accepts the most suitable driver.
                                 </div>
                             </div>
                         </div>
@@ -767,43 +630,40 @@
                 </div>
 
                 <div class="text-center mt-4">
-                    <p class="text-muted">Have more questions? Visit our <a href="{{ route('landing.faq') }}" class="text-primary fw-semibold">Complete Help Center</a> or <a href="{{ route('landing.contact') }}" class="text-primary fw-semibold">Contact Support</a>.</p>
+                    <p class="text-muted small">Have questions? Reach out via our <a href="{{ route('landing.contact') }}" class="text-dark fw-bold">Contact Page</a>.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 8. APP DOWNLOAD CALL TO ACTION BANNER -->
+<!-- 6. APP DOWNLOAD BANNER -->
 <section class="section-padding pt-0">
     <div class="container">
-        <div class="download-cta-banner">
+        <div class="app-banner">
             <div class="row align-items-center g-4">
                 <div class="col-lg-8">
-                    <div class="badge bg-warning text-dark px-3 py-1 rounded-pill fw-bold mb-3">
-                        <i class="bi bi-stars me-1"></i> Available on Android & iOS
-                    </div>
-                    <h2 class="text-white fs-1 mb-3 brand-font">Ready to Transform Your Freight Operations?</h2>
-                    <p class="text-white-50 fs-5 mb-4">
-                        Download the Movers app today. Post loads in seconds, receive verified driver bids, and manage nationwide dispatches with complete peace of mind.
+                    <span class="badge bg-secondary bg-opacity-50 text-white px-3 py-1 rounded-pill mb-3 small">
+                        Mobile Application
+                    </span>
+                    <h2 class="text-white fs-2 fw-bold mb-3">Download Movers on Your Mobile Device</h2>
+                    <p class="text-white-50 mb-4" style="max-width: 600px;">
+                        Manage freight bookings, communicate directly with drivers, view digital bilty receipts, and calculate trip estimates on the go.
                     </p>
                     <div class="d-flex flex-wrap gap-3">
-                        <a href="{{ route('landing.download') }}" class="btn btn-warning text-dark fw-bold py-3 px-4 rounded-3 d-inline-flex align-items-center gap-2">
-                            <i class="bi bi-google-play fs-5"></i> Download for Android
+                        <a href="{{ route('landing.download') }}" class="btn btn-light text-dark fw-bold py-3 px-4 rounded-3 d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-google-play fs-5"></i> Google Play Store
                         </a>
                         <a href="{{ route('landing.download') }}" class="btn btn-outline-light fw-bold py-3 px-4 rounded-3 d-inline-flex align-items-center gap-2">
-                            <i class="bi bi-apple fs-5"></i> Download for iOS
-                        </a>
-                        <a href="{{ route('landing.calculator') }}" class="btn btn-dark border border-secondary border-opacity-50 text-white fw-bold py-3 px-4 rounded-3 d-inline-flex align-items-center gap-2">
-                            <i class="bi bi-calculator"></i> Try Web Calculator
+                            <i class="bi bi-apple fs-5"></i> Apple App Store
                         </a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 text-center text-lg-end d-none d-lg-block">
                     <div class="p-4 bg-white bg-opacity-10 rounded-4 border border-white border-opacity-10 d-inline-block text-center">
-                        <i class="bi bi-qr-code text-white fs-1 d-block mb-2"></i>
-                        <span class="text-white fw-semibold small">Scan to Install App</span>
+                        <i class="bi bi-phone text-white fs-1 d-block mb-2"></i>
+                        <span class="text-white fw-semibold small">Available for Android & iOS</span>
                     </div>
                 </div>
             </div>
@@ -842,7 +702,7 @@
                 })
                 .then(res => res.json())
                 .then(data => {
-                    btnCalc.innerHTML = '<i class="bi bi-calculator-fill"></i> Calculate Fair Estimate';
+                    btnCalc.innerHTML = '<i class="bi bi-arrow-right-circle me-1"></i> Calculate Fare Estimate';
                     btnCalc.disabled = false;
 
                     if (data.success) {
@@ -856,7 +716,7 @@
                     }
                 })
                 .catch(err => {
-                    btnCalc.innerHTML = '<i class="bi bi-calculator-fill"></i> Calculate Fair Estimate';
+                    btnCalc.innerHTML = '<i class="bi bi-arrow-right-circle me-1"></i> Calculate Fare Estimate';
                     btnCalc.disabled = false;
                     console.error(err);
                 });

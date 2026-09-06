@@ -410,13 +410,13 @@
     <div class="top-announcement d-none d-md-block">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center gap-4">
-                    <span><i class="bi bi-shield-check text-success me-1"></i> Pakistan's 100% Verified Freight Network</span>
-                    <span><i class="bi bi-fuel-pump text-warning me-1"></i> Live Diesel Rate: <strong>Rs. {{ number_format($setting->diesel_price ?? 275, 2) }}/L</strong></span>
-                    <span><i class="bi bi-headset text-info me-1"></i> 24/7 Helpline: <strong>+92 300 0000000</strong></span>
+                <div class="d-flex align-items-center gap-4 text-white-50 small">
+                    <span><i class="bi bi-truck me-1 text-white"></i> Verified Freight Network Pakistan</span>
+                    <span><i class="bi bi-fuel-pump me-1 text-white"></i> Diesel Rate: <strong class="text-white">Rs. {{ number_format($setting->diesel_price ?? 275, 0) }}/L</strong></span>
+                    <span><i class="bi bi-telephone me-1 text-white"></i> Helpline: <strong class="text-white">+92 300 0000000</strong></span>
                 </div>
                 <div class="d-flex align-items-center gap-3">
-                    <a href="{{ route('landing.calculator') }}" class="text-white text-decoration-none"><i class="bi bi-calculator me-1"></i> Fare Calculator</a>
+                    <a href="{{ route('landing.calculator') }}" class="text-white text-decoration-none small"><i class="bi bi-calculator me-1"></i> Fare Calculator</a>
                 </div>
             </div>
         </div>
@@ -551,7 +551,6 @@
                         <li><a href="{{ route('landing.terms') }}#shipper-rules"><i class="bi bi-box-seam text-primary"></i> Cargo & Shipper Rules</a></li>
                         <li><a href="{{ route('landing.terms') }}#bilty-policy"><i class="bi bi-file-earmark-text text-primary"></i> Digital Bilty Policy</a></li>
                         <li><a href="{{ route('landing.privacy') }}#kyc-security"><i class="bi bi-person-check text-primary"></i> KYC & Data Security</a></li>
-                        <li><a href="{{ route('admin.login') }}"><i class="bi bi-speedometer2 text-primary"></i> Admin Control Panel</a></li>
                     </ul>
                 </div>
 

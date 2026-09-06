@@ -417,8 +417,6 @@
                 </div>
                 <div class="d-flex align-items-center gap-3">
                     <a href="{{ route('landing.calculator') }}" class="text-white text-decoration-none"><i class="bi bi-calculator me-1"></i> Fare Calculator</a>
-                    <span class="text-white-50">|</span>
-                    <a href="{{ route('admin.login') }}" class="text-white text-decoration-none"><i class="bi bi-lock-fill me-1"></i> Admin Portal</a>
                 </div>
             </div>
         </div>

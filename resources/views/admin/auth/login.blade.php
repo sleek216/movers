@@ -70,13 +70,13 @@
             <form class="theme-form" method="POST" action="{{ route('admin.login.submit') }}">
                 @csrf
                 <h5 class="mb-1">Sign In</h5>
-                <p class="text-muted mb-4 f-12">Enter your admin credentials to access the panel.</p>
+                <p class="text-muted mb-4 f-12">Sign in to access your dashboard.</p>
 
                 <div class="form-group mb-3">
                     <label class="col-form-label fw-semibold">Username</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
-                        <input class="form-control" type="text" name="username" value="{{ old('username', 'admin') }}" required placeholder="Enter username">
+                        <input class="form-control" type="text" name="username" value="{{ old('username') }}" required placeholder="Enter username">
                     </div>
                 </div>
 
@@ -90,10 +90,6 @@
 
                 <div class="form-group mb-0">
                     <button class="btn btn-primary btn-block w-100" type="submit">Sign In to Dashboard</button>
-                </div>
-
-                <div class="mt-4 text-center">
-                    <small class="text-muted">Default login: <strong>admin</strong> / <strong>admin@123</strong></small>
                 </div>
             </form>
         </div>

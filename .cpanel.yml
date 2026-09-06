@@ -2,4 +2,5 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/martblissful/movers.martblissful.com
-    - /bin/cp -R * $DEPLOYPATH
+    - /bin/cp -rf * $DEPLOYPATH
+    - /bin/rm -f $DEPLOYPATH/storage/framework/views/*.php

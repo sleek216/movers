@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/martblissful/movers.martblissful.com
+    - /bin/cp -R * $DEPLOYPATH

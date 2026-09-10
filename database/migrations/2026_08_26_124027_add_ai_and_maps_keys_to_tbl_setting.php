@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tbl_setting', function (Blueprint $table) {
-            $table->string('ai_provider', 50)->default('gemini')->after('diesel_price');
+            $table->string('ai_provider', 50)->default('gemini');
             $table->text('gemini_api_key')->nullable()->after('ai_provider');
             $table->text('openai_api_key')->nullable()->after('gemini_api_key');
             $table->text('google_map_key')->nullable()->after('openai_api_key');
